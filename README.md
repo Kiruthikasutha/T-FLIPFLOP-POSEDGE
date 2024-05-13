@@ -40,33 +40,38 @@ From the above characteristic table, we can directly write the next state equati
 5.Repeat steps 2-4 for each bit you want to input and shift.
 ~~~
 
-
 **PROGRAM**
 
  Developed by: KIRUTHIKA M RegisterNumber:212223040098
 
- ~~~
-module exp11(out,clk,rstn);
-input clk,rstn;
-output reg [3:0]out;
-always @ (posedge clk)
+~~~
+module Tflipflop( input clk, rst_n, input t,
+output reg q,
+output q_bar
+);
+always@(posedge clk) 
+begin // for synchronous reset
+  //WRITE THE CONDITION OF TOGGLE FLIPFLOP HERE WITH RESET AND 
+  //IMPLEMENT THE T LOGIC BY CONDITIONAL OPERATOR
+if(!rst_n)
+q<=0;
+else 
 begin
-   if(!rstn)
-     out<=0;
-   else 
-     out <= out+1;
+q<=(t?~q:q);
 end
+end
+assign q_bar = ~q;
 endmodule
- ~~~
+~~~
 
 **RTL LOGIC FOR FLIPFLOPS**
 
-![Screenshot 2024-05-12 135745](https://github.com/Kiruthikasutha/T-FLIPFLOP-POSEDGE/assets/144979570/0ed86545-8db4-4d93-b477-2c3762aa4c68)
+![Screenshot 2024-05-13 225906](https://github.com/Kiruthikasutha/T-FLIPFLOP-POSEDGE/assets/144979570/9fa0629c-ca13-4aff-a7d7-c13ea4d22f3f)
 
 
 **TIMING DIGRAMS FOR FLIP FLOPS**
 
-![Screenshot 2024-05-12 135814](https://github.com/Kiruthikasutha/T-FLIPFLOP-POSEDGE/assets/144979570/4d054136-91d9-4aed-a258-cb670eaffc3d)
+![Screenshot 2024-05-13 225922](https://github.com/Kiruthikasutha/T-FLIPFLOP-POSEDGE/assets/144979570/6f6be399-0b23-4b56-bc2e-06d66f1a70e8)
 
 
 **RESULTS**
